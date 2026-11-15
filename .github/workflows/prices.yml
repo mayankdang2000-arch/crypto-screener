@@ -1,0 +1,16 @@
+name: Fetch Binance Prices
+
+on:
+  workflow_dispatch:        # lets you run it manually with a button
+  schedule:
+    - cron: "*/5 * * * *"   # every 5 minutes
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python fetch_prices.py
